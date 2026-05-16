@@ -1,4 +1,4 @@
-# 🚀 Lead Capture Automation — n8n + HubSpot + OpenAI
+# 🚀 Lead Capture Automation — n8n + Make.com + HubSpot + OpenAI
 
 Automated lead capture pipeline that validates incoming leads, creates contacts in HubSpot, enriches them with AI scoring, sends email notifications, and logs every execution — all without manual effort.
 
@@ -10,15 +10,26 @@ Sales teams waste hours manually entering leads into CRM, qualifying them, and n
 
 ---
 
+## ⚙️ Implementations
+
+This workflow is available in two automation platforms — same logic, different tools:
+
+| | n8n | Make.com |
+|---|---|---|
+| **Best for** | Technical clients | Non-technical clients |
+| **Hosting** | Self-hosted, more control | Cloud-based, visual |
+| **Cost** | Lower long-term | Per-operation pricing |
+| **Flexibility** | Higher | Moderate |
+
+---
+
 ## 🔧 Tech Stack
 
-| Tool | Purpose |
-|---|---|
-| **n8n** | Workflow automation engine |
-| **HubSpot CRM** | Contact management |
-| **OpenAI GPT-4o-mini** | Lead summarization + scoring |
-| **Gmail** | Sales team notification |
-| **Google Sheets** | Execution logging |
+### n8n Version
+n8n · HubSpot CRM · OpenAI GPT-4o-mini · Gmail · Google Sheets
+
+### Make.com Version
+Make.com · HubSpot CRM · OpenAI GPT-4o-mini · Gmail · Google Sheets
 
 ---
 
@@ -90,11 +101,11 @@ Webhook (POST)
 ## 🚀 Setup Guide
 
 ### 1. Prerequisites
-- n8n instance (self-hosted or cloud)
+- n8n instance (self-hosted or cloud) **or** Make.com account
 - HubSpot free account
 - OpenAI API key
-- Gmail account connected to n8n
-- Google Sheets connected to n8n
+- Gmail account
+- Google Sheets
 
 ### 2. HubSpot Setup
 1. Go to Settings → Integrations → Legacy Apps
@@ -113,7 +124,7 @@ Create these in HubSpot → Settings → Properties → Contact Properties:
 | Lead Score | `lead_score` | Single-line text |
 
 ### 4. n8n Setup
-1. Import `workflow.json` into n8n
+1. Import `n8n/workflow.json` into n8n
 2. Add credentials:
    - HubSpot (paste access token)
    - OpenAI (API key)
@@ -122,15 +133,28 @@ Create these in HubSpot → Settings → Properties → Contact Properties:
 3. Update Google Sheets node with your Sheet ID
 4. Activate workflow
 
+### 5. Make.com Setup
+1. Import `makecom/scenario.json` into Make.com
+2. Add connections:
+   - HubSpot (paste access token)
+   - OpenAI (API key)
+   - Gmail (OAuth)
+   - Google Sheets (OAuth)
+3. Update Google Sheets module with your Sheet ID
+4. Activate scenario
+
 ---
 
 ## 📁 Repository Structure
 
 ```
-lead-capture-hubspot-n8n/
-├── workflow.json        # n8n workflow export
-├── README.md            # This file
-└── sample-payload.json  # Test webhook payload
+lead-capture-hubspot/
+├── n8n/
+│   └── workflow.json          # n8n workflow export
+├── makecom/
+│   └── scenario.json          # Make.com scenario export
+├── sample-payload.json        # Test webhook payload
+└── README.md                  # This file
 ```
 
 ---
